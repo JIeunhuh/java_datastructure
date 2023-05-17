@@ -1,0 +1,27 @@
+package chap4_스택과큐;
+
+import java.util.List;
+
+public class 큐만들기 {
+	private List<Integer> que;
+	private int capacity; // 큐의 크기
+	private int front; // 맨 처음 요소 커서
+	private int rear; // 맨 끝 요소 커서
+	private int num; // 현재 데이터 개수
+	
+	public class EmptyGenericQueueException extends RuntimeException{
+		public EmptyGenericQueueException() {}
+	}
+	
+	public class OverflowGenericException extends RuntimeException{
+		public OverflowGenericException() {}
+	}
+//	
+	public objectQueue(int maxlen) {
+		num=rear=front=0;
+		capacity = maxlen;
+		try{
+			que = new ArrayList<Integer>();
+		}
+	}
+}

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="chap4_스택과큐.스택만들기.OverFlowIntStackException"/>
+    <fullyQualifiedTypeName name="chap4_스택과큐.스택만들기.EmptyIntStackException"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.lang.Runtime"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="java.lang.OutOfMemoryError"/>
+    <fullyQualifiedTypeName name="chap4_스택과큐.큐만들기.OverflowGenericException"/>
+    <fullyQualifiedTypeName name="chap4_스택과큐.큐만들기.EmptyGenericQueueException"/>
 </qualifiedTypeNameHistroy>

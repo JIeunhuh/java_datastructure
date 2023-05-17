@@ -1,0 +1,11 @@
+package chap4_스택과큐;
+
+public class Snippet {
+	public int pop() throws EmptyIntStackException{
+			if(ptr <= capacity)
+				throw new EmptyIntStackException();
+			return stack[--ptr];
+		}
+		
+}
+
