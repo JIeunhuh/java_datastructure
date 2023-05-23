@@ -14,10 +14,13 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.lang.StackOverflowError"/>
-    <fullyQualifiedTypeName name="java.util.Stack"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
-    <fullyQualifiedTypeName name="chap5_재귀알고리즘.Stack3.OverFlowIntStackException"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.OutOfMemoryError"/>
     <fullyQualifiedTypeName name="chap5_재귀알고리즘.Stack3.EmptyIntStackException"/>
+    <fullyQualifiedTypeName name="chap5_재귀알고리즘.Stack3"/>
+    <fullyQualifiedTypeName name="chap5_재귀알고리즘.Offsets"/>
+    <fullyQualifiedTypeName name="chap5_재귀알고리즘.Stack3.OverFlowIntStackException"/>
+    <fullyQualifiedTypeName name="java.util.Stack"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>

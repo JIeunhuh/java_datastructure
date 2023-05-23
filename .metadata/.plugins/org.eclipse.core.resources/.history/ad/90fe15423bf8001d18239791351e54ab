@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 class Stack3 { // stack class
 	private ArrayList<Point> stack = new ArrayList<>(); // 스택용 arraylist
-	//private ArrayList<Items> stack1 = new ArrayList<>(); 
 	private int capacity; // stack 용량
 	private int ptr; // 스택 포인터
 
@@ -47,7 +46,6 @@ class Stack3 { // stack class
 		return 1;
 	}
 
-
 	public Point pop() throws EmptyIntStackException {// stack pop
 		if (ptr <= 0)
 			throw new EmptyIntStackException();
@@ -70,11 +68,7 @@ class Stack3 { // stack class
 			}
 		}
 	}
-
-
 }
-
-
 
 class Point {// point class
 	private int ix;

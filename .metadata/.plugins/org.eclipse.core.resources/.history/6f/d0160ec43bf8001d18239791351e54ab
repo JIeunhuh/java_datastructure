@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class Stack3 { // stack class
 	private ArrayList<Point> stack = new ArrayList<>(); // 스택용 arraylist
-	//private ArrayList<Items> stack1 = new ArrayList<>(); 
+	private ArrayList<Items> stack1 = new ArrayList<>(); 
 	private int capacity; // stack 용량
 	private int ptr; // 스택 포인터
 
@@ -46,7 +46,14 @@ class Stack3 { // stack class
 		ptr++;
 		return 1;
 	}
-
+	public int push(Items temp) throws OverFlowIntStackException { // stack push
+		if (ptr >= capacity) {
+			throw new OverFlowIntStackException();
+		}
+		stack.add(temp);
+		ptr++;
+		return 1;
+	}
 
 	public Point pop() throws EmptyIntStackException {// stack pop
 		if (ptr <= 0)
@@ -74,7 +81,17 @@ class Stack3 { // stack class
 
 }
 
+class Items { // 현재 위치
+	int x;
+	int y;
+	int dir;
 
+	public Items(int x, int y, int dir) {
+		this.x = x;
+		this.y = y;
+		this.dir = dir;
+	}
+}
 
 class Point {// point class
 	private int ix;
