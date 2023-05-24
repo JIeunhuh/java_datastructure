@@ -7,7 +7,7 @@ enum Directions {
 }
 
 
-class Offsets { // 이동하고 나서의 위치 x,y좌표?
+class Offsets { // 이동하고 나서의 이동 방향?
 	int a;
 	int b;
 	
@@ -33,7 +33,7 @@ class Items { // 현재 위치
 
 public class 미로찾기 {
 
-	static Offsets[] moves = new Offsets[8];// static을 선언하는 이유를 알아야 한다
+	static Offsets[] moves = new Offsets[8];// static을 선언하는 이유를 알아야 한다 / enum class의 총 열거 상수 갯수(방향) : 8개임 
 
 	public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 		
@@ -53,7 +53,7 @@ public class 미로찾기 {
 				int j = tmp.y;
 				int d = tmp.dir;
 				mark[i][j] = 1;//backtracking 궤적은 1로 표시
-				while (d < 8) // moves forward
+				while (d < 8) // moves forward(이동 방향)
 				{
 
 					if ((g == ix) && (h == iy)) { // reached exit
@@ -87,7 +87,7 @@ public class 미로찾기 {
 				{ 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
 				{ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 },
 				{ 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0 } };
-		for (int ia = 0; ia < 8; ia++)
+		for (int ia = 0; ia < 8; ia++) 
 			moves[ia] = new Offsets(0, 0);// 배열에 offsets 객체를 치환해야 한다.
 		moves[0].a = -1;
 		moves[0].b = 0;
