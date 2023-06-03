@@ -6,6 +6,11 @@ package chap8_리스트;
 import java.util.Comparator;
 import java.util.Scanner;
 
+<<<<<<< HEAD
+=======
+import Chap3_검색.Fruit;
+
+>>>>>>> eabe24ed21a2728cec4010ab9cf7287674046ab6
 class SimpleObject {
 	static final int NO = 1; // 번호를 읽어 들일까요?
 	static final int NAME = 2; // 이름을 읽어 들일까요?
@@ -74,6 +79,7 @@ class LinkedList2 {
 		first = null;
 	}
 
+<<<<<<< HEAD
 	public boolean Delete(SimpleObject element, Comparator<SimpleObject> cc) // delete the element
 	{
 		Node2 p = first;
@@ -106,10 +112,23 @@ class LinkedList2 {
 	}
 
 	public void Add(SimpleObject element, Comparator<SimpleObject> cc) // 임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다
+=======
+	public int Delete(SimpleObject element, Comparator<SimpleObject> cc) // delete the element
+	{
+
+	}
+
+	public void Show() { // 전체 리스트를 순서대로 출력한다.
+
+	}
+
+	public void Add(SimpleObject element, Comparator<SimpleObject> cc) //임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다 
+>>>>>>> eabe24ed21a2728cec4010ab9cf7287674046ab6
 	{
 		Node2 nd = new Node2(element);
 		Node2 p = first;
 		Node2 q = null;
+<<<<<<< HEAD
 		if (p == null) {// first가 널값인 경우(값이 없을때)
 			first = nd;
 			return;
@@ -131,11 +150,19 @@ class LinkedList2 {
 				q.link = nd;
 				return;
 			}
+=======
+		if(cc.compare(element, p.data)<0) {
+			
+>>>>>>> eabe24ed21a2728cec4010ab9cf7287674046ab6
 		}
 	}
 
 	public boolean Search(SimpleObject element, Comparator<SimpleObject> cc) { // 전체 리스트를 순서대로 출력한다./ 해당 데이터가 있는지 없는지 확인
+<<<<<<< HEAD
 		return false;
+=======
+
+>>>>>>> eabe24ed21a2728cec4010ab9cf7287674046ab6
 	}
 }
 
@@ -188,6 +215,7 @@ public class 객체연결리스트_test {
 		l.Show();
 		do {
 			switch (menu = SelectMenu()) {
+<<<<<<< HEAD
 				case Add: // 머리노드 삽입
 					data = new SimpleObject();
 					data.scanData("입력", 3);
@@ -214,6 +242,33 @@ public class 객체연결리스트_test {
 					break;
 				case Exit: // 꼬리 노드 삭제
 					break;
+=======
+			case Add: // 머리노드 삽입
+				data = new SimpleObject();
+				data.scanData("입력", 3);
+				l.Add(data, SimpleObject.NO_ORDER);
+				break;
+			case Delete: // 머리 노드 삭제
+				data = new SimpleObject();
+				data.scanData("삭제", SimpleObject.NO);
+				int num = l.Delete(data, SimpleObject.NO_ORDER);
+				System.out.println("삭제된 데이터 성공은 " + num);
+				break;
+			case Show: // 꼬리 노드 삭제
+				l.Show();
+				break;
+			case Search: // 회원 번호 검색
+				data = new SimpleObject();
+				data.scanData("탐색", SimpleObject.NO);
+				boolean result = l.Search(data, SimpleObject.NO_ORDER);
+				if (result == true)
+					System.out.println("검색 성공 = " + result);
+				else
+					System.out.println("검색 실패 = " + result);
+				break;
+			case Exit: // 꼬리 노드 삭제
+				break;
+>>>>>>> eabe24ed21a2728cec4010ab9cf7287674046ab6
 			}
 		} while (menu != Menu.Exit);
 	}
