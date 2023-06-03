@@ -1,3 +1,1 @@
-INDEX VERSION 1.132+C:\Users\USER\java자료구조\.metadata\.plugins\org.eclipse.jdt.core
-3413725848.index
-1865797976.index
+INDEX VERSION 1.131+C:\Users\허재웅\Back_End\java_datastructure\.metadata\.plugins\org.eclipse.jdt.core

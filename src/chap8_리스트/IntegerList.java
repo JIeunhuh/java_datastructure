@@ -85,6 +85,7 @@ class LinkedList1 {
 	}
 
 	public boolean Search(int data) { // 전체 리스트를 순서대로 출력한다.
+
 		return true;
 	}
 }
@@ -138,31 +139,31 @@ public class IntegerList {
 		l.Show();
 		do {
 			switch (menu = SelectMenu()) {
-			case Add: // 머리노드 삽입
-				data = rand.nextInt(20);
-				// double d = Math.random();
-				// data = (int) (d * 50);
-				l.Add(data);
-				System.out.println("데이터 들어감");
-				break;
-			case Delete: // 머리 노드 삭제
-				data = sc.nextInt();
-				boolean num = l.Delete(data);
-				System.out.println("삭제된 데이터는 " + num);
-				break;
-			case Show: // 꼬리 노드 삭제
-				l.Show();
-				break;
-			case Search: // 회원 번호 검색
-				int n = sc.nextInt();
-				boolean result = l.Search(n);
-				if (result == false)
-					System.out.println("검색 값 = " + n + "데이터가 없습니다.");
-				else
-					System.out.println("검색 값 = " + n + "데이터가 존재합니다.");
-				break;
-			case Exit: // 꼬리 노드 삭제
-				break;
+				case Add: // 머리노드 삽입
+					data = rand.nextInt(20);
+					// double d = Math.random();
+					// data = (int) (d * 50);
+					l.Add(data);
+					System.out.println("데이터 들어감");
+					break;
+				case Delete: // 머리 노드 삭제
+					data = sc.nextInt();
+					boolean num = l.Delete(data);
+					System.out.println("삭제된 데이터는 " + num);
+					break;
+				case Show: // 꼬리 노드 삭제
+					l.Show();
+					break;
+				case Search: // 회원 번호 검색
+					int n = sc.nextInt();
+					boolean result = l.Search(n);
+					if (result == false)
+						System.out.println("검색 값 = " + n + "데이터가 없습니다.");
+					else
+						System.out.println("검색 값 = " + n + "데이터가 존재합니다.");
+					break;
+				case Exit: // 꼬리 노드 삭제
+					break;
 			}
 		} while (menu != Menu.Exit);
 		sc.close();
