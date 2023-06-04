@@ -85,8 +85,16 @@ class LinkedList1 {
 	}
 
 	public boolean Search(int data) { // 전체 리스트를 순서대로 출력한다.
-		return true;
+		Node1 p = first;
+		while (p != null) {
+			if (data == (p.data)) {
+				return true;
+			}
+			p = p.link;
+		}
+		return false;
 	}
+
 }
 
 public class IntegerList {

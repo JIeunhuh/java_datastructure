@@ -135,6 +135,15 @@ class LinkedList2 {
 	}
 
 	public boolean Search(SimpleObject element, Comparator<SimpleObject> cc) { // 전체 리스트를 순서대로 출력한다./ 해당 데이터가 있는지 없는지 확인
+
+		Node2 p = first;
+		while (p != null) {
+			if (cc.compare(element, p.data) == 0) {
+				System.out.println("검색 성공 = " + p.data.toString());
+				return true;
+			}
+			p = p.link;
+		}
 		return false;
 	}
 }
