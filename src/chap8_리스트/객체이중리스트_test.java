@@ -109,6 +109,7 @@ class DoubledLinkedList2 {
 				System.out.println("검색 성공 = " + p.data.toString());
 				return true;
 			}
+			
 			p = p.rlink;
 		}
 		return false;
@@ -117,7 +118,7 @@ class DoubledLinkedList2 {
 	// --- 전체 노드 표시 ---//
 	public void show() { // show() == 원형list라서 계속 돌고돌아서 while문 종료가 안됨 어떻게 해결???ㄴ
 		Node3 p = first.rlink;
-		while (p != first) { //p가 first가 아닐때
+		while (p != first) { // p가 first가 아닐때
 			System.out.println(p.data);
 			p = p.rlink;
 			if (p == first.rlink) { // 원형 리스트의 마지막 노드까지 순회한 경우 종료
@@ -139,40 +140,57 @@ class DoubledLinkedList2 {
 			nd.rlink = first;
 			return;
 		}
-		//삽입위치를 잘못 설정하고 있다함, 구현이 오름차순으로 정렬된 리스트에 새로운 노드를 삽입하는것으로 가정했지만,
-		//실제는 원형리스트 구현하기 때문에 잘못된 동작을 하게됨? 이게 뭔소리신지
+		// 삽입위치를 잘못 설정, 구현이 오름차순으로 정렬된 리스트에 새로운 노드를 삽입하는것으로 가정했지만,
+//		// 실제는 원형리스트 구현하기 때문에 잘못된 동작을 하게됨?
+		
+		//코드 로직이 맞다는데 왜 실행이 두번이상 안되는지 모르겠음
 //		while (p != first) { 
 //			if (c.compare(obj, p.data) < 0) {
 //				if (p == first.rlink) {
 //					nd.rlink = p;
 //					p.llink = nd;
-//					first.rlink = nd;
+//					first.rlink.llink = nd;
 //					nd.llink = first;
 //					return;
 //				} else {
-//					nd.rlink = p;
-//					nd.llink = p.llink;
+//					nd.rlink = p.rlink;
+//					nd.llink = p;
 //					p.llink.rlink = nd;
-//					p.llink = nd;
+//					p.rlink = nd;
 //					// first.rlink = q;
 //					return;
 //				}
 //			} else if (c.compare(obj, p.data) > 0) {
 //				p = p.rlink;
+//				p = p.rlink;
 //				if (p == null) {
 //					nd.rlink = p;
+//					nd.llink=p.llink;
+//					p.llink.rlink=nd;
+//					p.llink=nd;
 //					return;
 //				}
 //			}
 //		}
-		while (p.rlink != first && c.compare(obj, p.rlink.data) > 0) { //gpt 답 이거하니까 돌아감
+
+		while (p.rlink != first && c.compare(obj, p.rlink.data) > 0) { // list 끝까지 반복 ; first node로 돌아가기전까지 
 			p = p.rlink;
-		}
+		} //p.rlink = 현재 노드 / p = 이전 노드를 가르키게 됨
 
 		nd.rlink = p.rlink;
 		nd.llink = p;
 		p.rlink.llink = nd;
 		p.rlink = nd;
+		
+		//되긴 하는데 데이터가 입력된 역순으로 저장됨 ㅇㅁㅇ
+//		while (p.rlink != first && c.compare(obj, p.data) > 0) { // list 끝까지 반복 ; first node로 돌아가기전까지 
+//			p = p.rlink;
+//		} //p==현재 노드
+//
+//		nd.rlink = p.llink.rlink;
+//		nd.llink = p.llink;
+//		p.llink.rlink = nd;
+//		p.llink = nd;
 	}
 
 	// --- list에 삭제할 데이터가 있으면 해당 노드를 삭제 ---//
@@ -184,118 +202,121 @@ class DoubledLinkedList2 {
 					first = p.rlink;
 					return true;
 				}
-				p.link = p.link;
+				p.llink.rlink = p.rlink;
 				return true;
 			} else if (c.compare(p.data, obj) < 0) {
-				q = p;
-				p = p.link;
+				//p.rlink.llink = p;
+				p = p.rlink;
 			}
+		}
+		return false;
 	}
-
+}
 //	public DoubledLinkedList2 merge(DoubledLinkedList2 lst2) { //list2만들어서 list1 + list2 = list3만듦
 //		
 //	 }
-}
+//	}
 
-public class 객체이중리스트_test {
-	enum Menu {
-		Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Merge("병합"), Exit("종료");
+	public class 객체이중리스트_test {
+		enum Menu {
+			Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Merge("병합"), Exit("종료");
 
-		private final String message; // 표시할 문자열
+			private final String message; // 표시할 문자열
 
-		static Menu MenuAt(int idx) { // 순서가 idx번째인 열거를 반환
-			for (Menu m : Menu.values())
-				if (m.ordinal() == idx)
-					return m;
-			return null;
-		}
-
-		Menu(String string) { // 생성자(constructor)
-			message = string;
-		}
-
-		String getMessage() { // 표시할 문자열을 반환
-			return message;
-		}
-	}
-
-	// --- 메뉴 선택 ---//
-	static Menu SelectMenu() {
-		Scanner sc1 = new Scanner(System.in);
-		int key;
-		do {
-			for (Menu m : Menu.values()) {
-				System.out.printf("(%d) %s  ", m.ordinal(), m.getMessage());
-				if ((m.ordinal() % 3) == 2 && m.ordinal() != Menu.Exit.ordinal())
-					System.out.println();
+			static Menu MenuAt(int idx) { // 순서가 idx번째인 열거를 반환
+				for (Menu m : Menu.values())
+					if (m.ordinal() == idx)
+						return m;
+				return null;
 			}
-			System.out.print(" : ");
-			key = sc1.nextInt();
-		} while (key < Menu.Add.ordinal() || key > Menu.Exit.ordinal());
-		return Menu.MenuAt(key);
+
+			Menu(String string) { // 생성자(constructor)
+				message = string;
+			}
+
+			String getMessage() { // 표시할 문자열을 반환
+				return message;
+			}
+		}
+
+		// --- 메뉴 선택 ---//
+		static Menu SelectMenu() {
+			Scanner sc1 = new Scanner(System.in);
+			int key;
+			do {
+				for (Menu m : Menu.values()) {
+					System.out.printf("(%d) %s  ", m.ordinal(), m.getMessage());
+					if ((m.ordinal() % 3) == 2 && m.ordinal() != Menu.Exit.ordinal())
+						System.out.println();
+				}
+				System.out.print(" : ");
+				key = sc1.nextInt();
+			} while (key < Menu.Add.ordinal() || key > Menu.Exit.ordinal());
+			return Menu.MenuAt(key);
+		}
+
+		public static void main(String[] args) {
+			Menu menu; // 메뉴
+			Scanner sc2 = new Scanner(System.in);
+			System.out.println("Linked List");
+			DoubledLinkedList2 lst1 = new DoubledLinkedList2(), lst2 = new DoubledLinkedList2(),
+					lst3 = new DoubledLinkedList2();
+			String sno1 = null, sname1 = null;
+			SimpleObject2 so;
+			boolean result = false;
+			do {
+				switch (menu = SelectMenu()) {
+				case Add: // 머리노드 삽입
+					System.out.println(" 회원번호: ");
+					sno1 = sc2.next();
+					System.out.println(" 회원이름: ");
+					sname1 = sc2.next();
+					so = new SimpleObject2(sno1, sname1);
+					lst1.add(so, SimpleObject2.NO_ORDER);
+					break;
+				case Delete: // 머리 노드 삭제
+					System.out.println(" 삭제할 회원번호: ");
+					sno1 = sc2.next();
+					System.out.println(" 삭제할 회원이름: ");
+					sname1 = sc2.next();
+					so = new SimpleObject2(sno1, sname1);
+					lst1.delete(so, SimpleObject2.NO_ORDER);
+					break;
+				case Show: // 꼬리 노드 삭제
+					lst1.show();
+					break;
+				case Search: // 회원 번호 검색
+					System.out.println(" 검색할 회원번호: ");
+					sno1 = sc2.next();
+					System.out.println(" 검색할 회원이름: ");
+					sname1 = sc2.next();
+					so = new SimpleObject2(sno1, sname1);
+					result = lst1.search(so, SimpleObject2.NO_ORDER);
+					if (result == false)
+						System.out.println("검색 값 = " + so + "데이터가 없습니다.");
+					else
+						System.out.println("검색 값 = " + so + "데이터가 존재합니다.");
+					break;
+				// case Merge:
+				// for (int i = 0; i < 5; i++) {
+				// System.out.println(" 두번째 리스트 회원번호: ");
+				// sno1 = sc2.next();
+				// System.out.println(" 두번째 리스트 회원이름: ");
+				// sname1 = sc2.next();
+				// so = new SimpleObject2(sno1, sname1);
+				// lst2.add(so, SimpleObject2.NO_ORDER);
+				// // lst3 = lst1.merge(lst2);
+				// System.out.println("list1: ");
+				// lst1.show();
+				// System.out.println("list2: ");
+				// lst2.show();
+				// System.out.println("list3: ");
+				// lst3.show();
+				// }
+				case Exit: // 종료
+					break;
+				}
+			} while (menu != Menu.Exit);
+		}
 	}
 
-	public static void main(String[] args) {
-		Menu menu; // 메뉴
-		Scanner sc2 = new Scanner(System.in);
-		System.out.println("Linked List");
-		DoubledLinkedList2 lst1 = new DoubledLinkedList2(), lst2 = new DoubledLinkedList2(),
-				lst3 = new DoubledLinkedList2();
-		String sno1 = null, sname1 = null;
-		SimpleObject2 so;
-		boolean result = false;
-		do {
-			switch (menu = SelectMenu()) {
-			case Add: // 머리노드 삽입
-				System.out.println(" 회원번호: ");
-				sno1 = sc2.next();
-				System.out.println(" 회원이름: ");
-				sname1 = sc2.next();
-				so = new SimpleObject2(sno1, sname1);
-				lst1.add(so, SimpleObject2.NO_ORDER);
-				break;
-			case Delete: // 머리 노드 삭제
-				System.out.println(" 삭제할 회원번호: ");
-				sno1 = sc2.next();
-				System.out.println(" 삭제할 회원이름: ");
-				sname1 = sc2.next();
-				so = new SimpleObject2(sno1, sname1);
-				lst1.delete(so, SimpleObject2.NO_ORDER);
-				break;
-			case Show: // 꼬리 노드 삭제
-				lst1.show();
-				break;
-			case Search: // 회원 번호 검색
-				System.out.println(" 검색할 회원번호: ");
-				sno1 = sc2.next();
-				System.out.println(" 검색할 회원이름: ");
-				sname1 = sc2.next();
-				so = new SimpleObject2(sno1, sname1);
-				result = lst1.search(so, SimpleObject2.NO_ORDER);
-				if (result == false)
-					System.out.println("검색 값 = " + so + "데이터가 없습니다.");
-				else
-					System.out.println("검색 값 = " + so + "데이터가 존재합니다.");
-				break;
-			// case Merge:
-			// for (int i = 0; i < 5; i++) {
-			// System.out.println(" 두번째 리스트 회원번호: ");
-			// sno1 = sc2.next();
-			// System.out.println(" 두번째 리스트 회원이름: ");
-			// sname1 = sc2.next();
-			// so = new SimpleObject2(sno1, sname1);
-			// lst2.add(so, SimpleObject2.NO_ORDER);
-			// // lst3 = lst1.merge(lst2);
-			// System.out.println("list1: ");
-			// lst1.show();
-			// System.out.println("list2: ");
-			// lst2.show();
-			// System.out.println("list3: ");
-			// lst3.show();
-			// }
-			case Exit: // 종료
-				break;
-			}
-		} while (menu != Menu.Exit);
-	}
-}
