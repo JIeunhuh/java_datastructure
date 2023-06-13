@@ -109,7 +109,7 @@ class DoubledLinkedList2 {
 				System.out.println("검색 성공 = " + p.data.toString());
 				return true;
 			}
-			
+
 			p = p.rlink;
 		}
 		return false;
@@ -141,56 +141,57 @@ class DoubledLinkedList2 {
 			return;
 		}
 		// 삽입위치를 잘못 설정, 구현이 오름차순으로 정렬된 리스트에 새로운 노드를 삽입하는것으로 가정했지만,
-//		// 실제는 원형리스트 구현하기 때문에 잘못된 동작을 하게됨?
-		
-		//코드 로직이 맞다는데 왜 실행이 두번이상 안되는지 모르겠음
-//		while (p != first) { 
-//			if (c.compare(obj, p.data) < 0) {
-//				if (p == first.rlink) {
-//					nd.rlink = p;
-//					p.llink = nd;
-//					first.rlink.llink = nd;
-//					nd.llink = first;
-//					return;
-//				} else {
-//					nd.rlink = p.rlink;
-//					nd.llink = p;
-//					p.llink.rlink = nd;
-//					p.rlink = nd;
-//					// first.rlink = q;
-//					return;
-//				}
-//			} else if (c.compare(obj, p.data) > 0) {
-//				p = p.rlink;
-//				p = p.rlink;
-//				if (p == null) {
-//					nd.rlink = p;
-//					nd.llink=p.llink;
-//					p.llink.rlink=nd;
-//					p.llink=nd;
-//					return;
-//				}
-//			}
-//		}
+		// // 실제는 원형리스트 구현하기 때문에 잘못된 동작을 하게됨?
 
-		while (p.rlink != first && c.compare(obj, p.rlink.data) > 0) { // list 끝까지 반복 ; first node로 돌아가기전까지 
+		// 코드 로직이 맞다는데 왜 실행이 두번이상 안되는지 모르겠음
+		// while (p != first) {
+		// if (c.compare(obj, p.data) < 0) {
+		// if (p == first.rlink) {
+		// nd.rlink = p;
+		// p.llink = nd;
+		// first.rlink.llink = nd;
+		// nd.llink = first;
+		// return;
+		// } else {
+		// nd.rlink = p.rlink;
+		// nd.llink = p;
+		// p.llink.rlink = nd;
+		// p.rlink = nd;
+		// // first.rlink = q;
+		// return;
+		// }
+		// } else if (c.compare(obj, p.data) > 0) {
+		// p = p.rlink;
+		// p = p.rlink;
+		// if (p == null) {
+		// nd.rlink = p;
+		// nd.llink=p.llink;
+		// p.llink.rlink=nd;
+		// p.llink=nd;
+		// return;
+		// }
+		// }
+		// }
+
+		while (p.rlink != first && c.compare(obj, p.rlink.data) > 0) { // list 끝까지 반복 ; first node로 돌아가기전까지
 			p = p.rlink;
-		} //p.rlink = 현재 노드 / p = 이전 노드를 가르키게 됨
+		} // p.rlink = 현재 노드 / p = 이전 노드를 가르키게 됨
 
 		nd.rlink = p.rlink;
 		nd.llink = p;
 		p.rlink.llink = nd;
 		p.rlink = nd;
-		
-		//되긴 하는데 데이터가 입력된 역순으로 저장됨 ㅇㅁㅇ
-//		while (p.rlink != first && c.compare(obj, p.data) > 0) { // list 끝까지 반복 ; first node로 돌아가기전까지 
-//			p = p.rlink;
-//		} //p==현재 노드
-//
-//		nd.rlink = p.llink.rlink;
-//		nd.llink = p.llink;
-//		p.llink.rlink = nd;
-//		p.llink = nd;
+
+		// 되긴 하는데 데이터가 입력된 역순으로 저장됨 ㅇㅁㅇ
+		// while (p.rlink != first && c.compare(obj, p.data) > 0) { // list 끝까지 반복 ;
+		// first node로 돌아가기전까지
+		// p = p.rlink;
+		// } //p==현재 노드
+		//
+		// nd.rlink = p.llink.rlink;
+		// nd.llink = p.llink;
+		// p.llink.rlink = nd;
+		// p.llink = nd;
 	}
 
 	// --- list에 삭제할 데이터가 있으면 해당 노드를 삭제 ---//
@@ -205,67 +206,68 @@ class DoubledLinkedList2 {
 				p.llink.rlink = p.rlink;
 				return true;
 			} else if (c.compare(p.data, obj) < 0) {
-				//p.rlink.llink = p;
+				// p.rlink.llink = p;
 				p = p.rlink;
 			}
 		}
 		return false;
 	}
 }
-//	public DoubledLinkedList2 merge(DoubledLinkedList2 lst2) { //list2만들어서 list1 + list2 = list3만듦
-//		
-//	 }
-//	}
+// public DoubledLinkedList2 merge(DoubledLinkedList2 lst2) { //list2만들어서 list1
+// + list2 = list3만듦
+//
+// }
+// }
 
-	public class 객체이중리스트_test {
-		enum Menu {
-			Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Merge("병합"), Exit("종료");
+public class 객체이중리스트_test {
+	enum Menu {
+		Add("삽입"), Delete("삭제"), Show("인쇄"), Search("검색"), Merge("병합"), Exit("종료");
 
-			private final String message; // 표시할 문자열
+		private final String message; // 표시할 문자열
 
-			static Menu MenuAt(int idx) { // 순서가 idx번째인 열거를 반환
-				for (Menu m : Menu.values())
-					if (m.ordinal() == idx)
-						return m;
-				return null;
-			}
-
-			Menu(String string) { // 생성자(constructor)
-				message = string;
-			}
-
-			String getMessage() { // 표시할 문자열을 반환
-				return message;
-			}
+		static Menu MenuAt(int idx) { // 순서가 idx번째인 열거를 반환
+			for (Menu m : Menu.values())
+				if (m.ordinal() == idx)
+					return m;
+			return null;
 		}
 
-		// --- 메뉴 선택 ---//
-		static Menu SelectMenu() {
-			Scanner sc1 = new Scanner(System.in);
-			int key;
-			do {
-				for (Menu m : Menu.values()) {
-					System.out.printf("(%d) %s  ", m.ordinal(), m.getMessage());
-					if ((m.ordinal() % 3) == 2 && m.ordinal() != Menu.Exit.ordinal())
-						System.out.println();
-				}
-				System.out.print(" : ");
-				key = sc1.nextInt();
-			} while (key < Menu.Add.ordinal() || key > Menu.Exit.ordinal());
-			return Menu.MenuAt(key);
+		Menu(String string) { // 생성자(constructor)
+			message = string;
 		}
 
-		public static void main(String[] args) {
-			Menu menu; // 메뉴
-			Scanner sc2 = new Scanner(System.in);
-			System.out.println("Linked List");
-			DoubledLinkedList2 lst1 = new DoubledLinkedList2(), lst2 = new DoubledLinkedList2(),
-					lst3 = new DoubledLinkedList2();
-			String sno1 = null, sname1 = null;
-			SimpleObject2 so;
-			boolean result = false;
-			do {
-				switch (menu = SelectMenu()) {
+		String getMessage() { // 표시할 문자열을 반환
+			return message;
+		}
+	}
+
+	// --- 메뉴 선택 ---//
+	static Menu SelectMenu() {
+		Scanner sc1 = new Scanner(System.in);
+		int key;
+		do {
+			for (Menu m : Menu.values()) {
+				System.out.printf("(%d) %s  ", m.ordinal(), m.getMessage());
+				if ((m.ordinal() % 3) == 2 && m.ordinal() != Menu.Exit.ordinal())
+					System.out.println();
+			}
+			System.out.print(" : ");
+			key = sc1.nextInt();
+		} while (key < Menu.Add.ordinal() || key > Menu.Exit.ordinal());
+		return Menu.MenuAt(key);
+	}
+
+	public static void main(String[] args) {
+		Menu menu; // 메뉴
+		Scanner sc2 = new Scanner(System.in);
+		System.out.println("Linked List");
+		DoubledLinkedList2 lst1 = new DoubledLinkedList2(), lst2 = new DoubledLinkedList2(),
+				lst3 = new DoubledLinkedList2();
+		String sno1 = null, sname1 = null;
+		SimpleObject2 so;
+		boolean result = false;
+		do {
+			switch (menu = SelectMenu()) {
 				case Add: // 머리노드 삽입
 					System.out.println(" 회원번호: ");
 					sno1 = sc2.next();
@@ -315,8 +317,7 @@ class DoubledLinkedList2 {
 				// }
 				case Exit: // 종료
 					break;
-				}
-			} while (menu != Menu.Exit);
-		}
+			}
+		} while (menu != Menu.Exit);
 	}
-
+}
