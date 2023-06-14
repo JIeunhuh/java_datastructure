@@ -87,47 +87,51 @@ class Tree {
 		if (root == null) { // root == null일때 p값은 nd
 			root = nd;
 			return true;
-		} else {
-			TreeNode p = root; // 현재 노드 ; root에서 내려감
-			//TreeNode q = null; // 이전노드
-			while (true) {
-				if (x < p.data) { // x가 p.data보다 작을 때 왼쪽 자식 노드로 이동
-					p = p.LeftChild;
-					if (p == null) {// 삽입 위치를 찾았을때
-						p.LeftChild = nd;
-						return true;
-					}
-				} else if (x > p.data) { // x가 p.data다 보다 클때
-					p = p.RightChild;
-					if (p == null) {
-						p.RightChild = nd;
-						return true;
-					}
-				} else
-					return false;// 중복된 값이 있을 때
-			}
-
 		}
-//		while (p != null) { // p가 !null일때
-//			if (x < p.data) { // x가 p.data보다 작을때 -> 왼쪽노드로 내려감 ; p==root니까 root값을 기준으로 작은 값은 다 왼쪽, 큰 값은 오른쪽으로 감
-//				q = p;
-//				p = p.LeftChild;
-//				return true;
-//			} else if (x > p.data) { // x가 p.data보다 큰 경우
-//				q = p;
-//				p = p.RightChild;
-//				return true;
+//		else {
+
+//			while (true) {
+//				if (x < p.data) { // x가 p.data보다 작을 때 왼쪽 자식 노드로 이동
+//					p = p.LeftChild;
+//					if (p == null) {// 삽입 위치를 찾았을때
+//						p.LeftChild = nd;
+//						return true;
+//					}
+//				} else if (x > p.data) { // x가 p.data다 보다 클때
+//					p = p.RightChild;
+//					if (p == null) {
+//						p.RightChild = nd;
+//						return true;
+//					}
+//				} else
+//					return false;// 중복된 값이 있을 때
 //			}
+//
 //		}
-//		return false;
-//	} -> return문이 잘못됨 ; 각각 if블록내에 실행되고 있어서 if블록에서 실행되면 함수가 즉시 종료됨 -> while문 빠져나와서 실행
-	}
+		TreeNode p = root; // 현재 노드 ; root에서 내려감
+		TreeNode q = null; // 이전노드
+		while (p != null) { // p가 !null일때
+			if (x < p.data) { // x가 p.data보다 작을때 -> 왼쪽노드로 내려감 ; p==root니까 root값을 기준으로 작은 값은 다 왼쪽, 큰 값은 오른쪽으로 감
+				q = p;
+				p = p.LeftChild;
+
+			} else if (x > p.data) { // x가 p.data보다 큰 경우
+				q = p;
+				p = p.RightChild;
+
+			} else //같은 데이터가 있을때
+				return false;
+		}
+		return true;
+
+	} // -> return문이 잘못됨 ; 각각 if블록내에 실행되고 있어서 if블록에서 실행되면 함수가 즉시 종료됨 -> while문 빠져나와서
+		// 실행
 
 	boolean delete(int num) { // node 삭제
 		TreeNode p = root;
 		TreeNode q = null;
 		if (p != null) {// p가 null이 아닐때
-
+			
 		}
 		return false;
 	}
